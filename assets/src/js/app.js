@@ -5,8 +5,6 @@ $(function(){
 
     _fb.init();
 
-    console.log( _fbAsyncInitDeferred );
-
     $('#btn-login').click(function(){
         _fbAsyncInitDeferred.done(function(){
             FB.getLoginStatus(function(response){
