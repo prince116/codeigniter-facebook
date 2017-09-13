@@ -6,14 +6,12 @@ $(function(){
     _fb.init();
 
     $('#btn-login').click(function(){
-        _fbAsyncInitDeferred.done(function(){
-            FB.getLoginStatus(function(response){
-                console.log(response);
-            });
+        _fb.getLoginStatus(function(response){
+            console.log(response);
+        },function(response){
+            alert('fail');
         });
     });
-
-    console.log("Hello World! 2");
 
 
 });

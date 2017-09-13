@@ -22,6 +22,21 @@ function init(){
 
 }
 
+function getLoginStatus(successCallback, failCallback){
+    _fbAsyncInitDeferred.done(function(){
+        FB.getLoginStatus(function(response){
+            if( response.status == 'connected' ){
+                if( successCallback instanceof Function )
+                    successCallback(response);
+            } else {
+                if( failCallback instanceof Function )
+                    failCallback(response);
+            }
+        });
+    });
+}
+
 export default {
-    init: init
+    init: init,
+    getLoginStatus: getLoginStatus
 }
