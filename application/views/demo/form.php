@@ -11,7 +11,7 @@
         
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             
-            <?php echo form_open('form/create'); ?>
+            <?php echo form_open(base_url().'form/create'); ?>
 
                 <div class="form-group">
                     <label for="title">Title</label>
