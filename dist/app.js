@@ -10354,7 +10354,15 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
     __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].getLoginStatus(function () {
         __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].api('/me', 'GET', { fields: 'id, gender, link, name, first_name, last_name' }, function (response) {
-            console.log(response);
+            if (!response.error) {
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#fb_id').val(response.id);
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#last_name').val(response.last_name);
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#first_name').val(response.first_name);
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#name').val(response.name);
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#link').val(response.link);
+
+                if (response.gender === 'male') __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name="gender"][value="Male"]').prop('checked', true);else if (response.gender === 'female') __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name="gender"][value="Female"]').prop('checked', true);
+            }
         });
     }, function () {
         alert('fail');
