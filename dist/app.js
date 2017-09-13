@@ -10351,6 +10351,10 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
             alert('fail');
         });
     });
+
+    __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].api('/me', 'GET', { fields: 'first_name, lastname' }, function (response) {
+        console.log(response);
+    });
 });
 
 /***/ }),
@@ -10413,9 +10417,17 @@ function getLoginStatus(successCallback, failCallback) {
     });
 }
 
+function api(path, method, param, callback) {
+
+    _fbAsyncInitDeferred.done(function () {
+        FB.api(path, method, params, callback);
+    });
+}
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     init: init,
-    getLoginStatus: getLoginStatus
+    getLoginStatus: getLoginStatus,
+    api: api
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 

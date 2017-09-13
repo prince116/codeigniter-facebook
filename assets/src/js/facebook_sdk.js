@@ -36,7 +36,16 @@ function getLoginStatus(successCallback, failCallback){
     });
 }
 
+function api(path, method, param, callback){
+
+    _fbAsyncInitDeferred.done(function(){
+        FB.api(path, method, params, callback);
+    });
+
+}
+
 export default {
     init: init,
-    getLoginStatus: getLoginStatus
+    getLoginStatus: getLoginStatus,
+    api: api
 }

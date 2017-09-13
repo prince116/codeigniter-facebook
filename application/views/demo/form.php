@@ -14,10 +14,12 @@
             <?php echo form_open(base_url().'form/create'); ?>
 
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="input" name="title" /><br />
-                            
-                    <input type="submit" name="submit" class="btn btn-primary" value="Create news item" />
+                    <label for="title">Username</label>
+                    <input type="text" name="title" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-primary btn-lg" value="Create news item" />
                 </div>
             
             
