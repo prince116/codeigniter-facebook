@@ -10417,7 +10417,7 @@ function getLoginStatus(successCallback, failCallback) {
     });
 }
 
-function api(path, method, param, callback) {
+function api(path, method, params, callback) {
 
     _fbAsyncInitDeferred.done(function () {
         FB.api(path, method, params, callback);
