@@ -15,7 +15,7 @@ $(function(){
 
 
     _fb.getLoginStatus(function(){
-        _fb.api('/me', 'GET', {fields: 'first_name, lastname'}, function(response){
+        _fb.api('/me', 'GET', {fields: 'id, gender, link, full_name, first_name, last_name'}, function(response){
             console.log(response);
         });
     }, function(){
