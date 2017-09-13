@@ -10344,17 +10344,13 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
 
     __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].init();
 
-    console.log(_fbAsyncInitDeferred);
-
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#btn-login').click(function () {
-        _fbAsyncInitDeferred.done(function () {
-            FB.getLoginStatus(function (response) {
-                console.log(response);
-            });
+        __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].getLoginStatus(function (response) {
+            console.log(response);
+        }, function (response) {
+            alert('fail');
         });
     });
-
-    console.log("Hello World! 2");
 });
 
 /***/ }),
@@ -10405,8 +10401,21 @@ module.exports = __webpack_require__(3);
     })(document, 'script', 'facebook-jssdk');
 }
 
+function getLoginStatus(successCallback, failCallback) {
+    _fbAsyncInitDeferred.done(function () {
+        FB.getLoginStatus(function (response) {
+            if (response.status == 'connected') {
+                if (successCallback instanceof Function) successCallback(response);
+            } else {
+                if (failCallback instanceof Function) failCallback(response);
+            }
+        });
+    });
+}
+
 /* harmony default export */ __webpack_exports__["a"] = ({
-    init: init
+    init: init,
+    getLoginStatus: getLoginStatus
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
