@@ -10352,8 +10352,12 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
         });
     });
 
-    __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].api('/me', 'GET', { fields: 'first_name, lastname' }, function (response) {
-        console.log(response);
+    __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].getLoginStatus(function () {
+        __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].api('/me', 'GET', { fields: 'first_name, lastname' }, function (response) {
+            console.log(response);
+        });
+    }, function () {
+        alert('fail');
     });
 });
 

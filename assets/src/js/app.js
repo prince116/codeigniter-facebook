@@ -13,8 +13,13 @@ $(function(){
         });
     });
 
-    _fb.api('/me', 'GET', {fields: 'first_name, lastname'}, function(response){
-        console.log(response);
+
+    _fb.getLoginStatus(function(){
+        _fb.api('/me', 'GET', {fields: 'first_name, lastname'}, function(response){
+            console.log(response);
+        });
+    }, function(){
+        alert('fail');
     });
 
 });
