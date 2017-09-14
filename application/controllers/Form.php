@@ -48,7 +48,18 @@ class Form extends CI_Controller {
 			'default_graph_version' => 'v2.10',
 		]);
 
-		$helper = $fb->getCanvasHelper();
+		// Send the request to Graph
+		try {
+			$response['data'] = $fb->get('/me');
+		} catch(Facebook\Exceptions\FacebookResponseException $e) {
+			// When Graph returns an error
+			$response['err_msg'] = 'Graph returned an error: ' . $e->getMessage();
+		} catch(Facebook\Exceptions\FacebookSDKException $e) {
+			// When validation fails or other local issues
+			$response['err_msg'] = 'Facebook SDK returned an error: ' . $e->getMessage();
+		}
+
+		/* $helper = $fb->getCanvasHelper();
 		
 		try {
 		  $accessToken = $helper->getAccessToken();
@@ -70,7 +81,7 @@ class Form extends CI_Controller {
 		
 		// echo '<h3>Access Token</h3>';
 		$response['access_token'] = $accessToken;
-		// $response['access_token'] = $accessToken->getValue();
+		// $response['access_token'] = $accessToken->getValue(); */
 
 		echo json_encode($response);
 		exit();
