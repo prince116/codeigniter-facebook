@@ -521,3 +521,8 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+$config['facebook'] = array(
+    'app_id' => '275397639638870',
+    'app_secret' => '738c0c5f842c706d51fa34161ee3cc32',
+);

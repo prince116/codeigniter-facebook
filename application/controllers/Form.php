@@ -30,10 +30,33 @@ class Form extends CI_Controller {
     
     public function create()
     {
-        $this->load->helper('url');
+        // $this->load->helper('url');
 
-        $title = $this->input->post('title');
+        // $title = $this->input->post('title');
 
-        var_dump($title);
+		// var_dump($title);
+		
+		require_once("../vendor/composer/autoload_real.php");
+
+		$fb = new Facebook\Facebook([
+			'app_id' => $this->config['facebook']['app_id'],
+			'app_secret' => $this->config['facebook']['app_secret'],
+			'default_graph_version' => 'v2.10',
+			]);
+		  
+		  try {
+			// Returns a `Facebook\FacebookResponse` object
+			$response = $fb->get('/me?fields=id,name', '{access-token}');
+		  } catch(Facebook\Exceptions\FacebookResponseException $e) {
+			echo 'Graph returned an error: ' . $e->getMessage();
+			exit;
+		  } catch(Facebook\Exceptions\FacebookSDKException $e) {
+			echo 'Facebook SDK returned an error: ' . $e->getMessage();
+			exit;
+		  }
+		  
+		  $user = $response->getGraphUser();
+		  
+		  echo 'Name: ' . $user['name'];
     }
 }
