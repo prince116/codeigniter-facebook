@@ -48,6 +48,9 @@ class Form extends CI_Controller {
 
 		$helper = $fb->getJavaScriptHelper();
 		$accessToken = $helper->getAccessToken();
+
+		var_dump($accessToken);
+		exit();
 		  
 		  try {
 			// Returns a `Facebook\FacebookResponse` object
