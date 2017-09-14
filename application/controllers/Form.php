@@ -69,7 +69,8 @@ class Form extends CI_Controller {
 		$response['signed_request'] = $helper->getSignedRequest();
 		
 		// echo '<h3>Access Token</h3>';
-		$response['access_token'] = $accessToken->getValue();
+		$response['access_token'] = $accessToken;
+		// $response['access_token'] = $accessToken->getValue();
 
 		echo json_encode($response);
 		exit();
