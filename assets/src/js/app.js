@@ -28,6 +28,16 @@ $(function(){
                 else if( response.gender === 'female' )
                     $('input[name="gender"][value="Female"]').prop('checked', true);
 
+
+                $.ajax({
+                    method: "POST",
+                    url: "https://"+window.location.hostname+"/form/create/",
+                    dataType: "JSON"
+                  })
+                    .done(function( msg ) {
+                      console.log(msg);
+                    });
+
             }
         });
     }, function(){
