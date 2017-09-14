@@ -10466,6 +10466,7 @@ function api(path, method, params, callback) {
 /* harmony default export */ __webpack_exports__["a"] = ({
     init: init,
     getLoginStatus: getLoginStatus,
+    login: login,
     api: api
 });
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))

@@ -1,5 +1,5 @@
 import $ from "jquery";
-import _fb from "./facebook_sdk"
+import _fb from "./facebook_sdk";
 
 $(function(){
 

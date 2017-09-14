@@ -53,5 +53,6 @@ function api(path, method, params, callback){
 export default {
     init: init,
     getLoginStatus: getLoginStatus,
+    login: login,
     api: api
 }
