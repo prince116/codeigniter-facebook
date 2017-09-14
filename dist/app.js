@@ -10362,6 +10362,14 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
                 __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#link').val(response.link);
 
                 if (response.gender === 'male') __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name="gender"][value="Male"]').prop('checked', true);else if (response.gender === 'female') __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name="gender"][value="Female"]').prop('checked', true);
+
+                __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+                    method: "POST",
+                    url: "https://" + window.location.hostname + "/form/create/",
+                    dataType: "JSON"
+                }).done(function (msg) {
+                    console.log(msg);
+                });
             }
         });
     }, function () {
