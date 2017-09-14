@@ -6,15 +6,26 @@ $(function(){
     _fb.init();
 
     $('#btn-login').click(function(){
-        _fb.getLoginStatus(function(response){
+        /* _fb.getLoginStatus(function(response){
             console.log(response);
         },function(response){
             alert('fail');
+        }); */
+
+        _fb.login(function(response){
+            $.ajax({
+                method: "POST",
+                url: "https://"+window.location.hostname+"/form/create/",
+                dataType: "JSON"
+              })
+                .done(function( msg ) {
+                  console.log(msg);
+                });
         });
     });
 
 
-    _fb.getLoginStatus(function(){
+    /* _fb.getLoginStatus(function(){
         _fb.api('/me', 'GET', {fields: 'id, gender, link, name, first_name, last_name'}, function(response){
             if( !response.error ){
                 $('#fb_id').val(response.id);
@@ -42,6 +53,6 @@ $(function(){
         });
     }, function(){
         alert('fail');
-    });
+    }); */
 
 });

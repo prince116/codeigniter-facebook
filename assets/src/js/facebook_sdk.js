@@ -36,6 +36,12 @@ function getLoginStatus(successCallback, failCallback){
     });
 }
 
+function login(callback){
+    _fbAsyncInitDeferred.done(function(){
+        FB.login(callback);
+    });
+}
+
 function api(path, method, params, callback){
 
     _fbAsyncInitDeferred.done(function(){

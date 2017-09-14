@@ -10345,36 +10345,49 @@ __WEBPACK_IMPORTED_MODULE_0_jquery___default()(function () {
     __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].init();
 
     __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#btn-login').click(function () {
-        __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].getLoginStatus(function (response) {
+        /* _fb.getLoginStatus(function(response){
             console.log(response);
-        }, function (response) {
+        },function(response){
             alert('fail');
+        }); */
+
+        __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].login(function (response) {
+            __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+                method: "POST",
+                url: "https://" + window.location.hostname + "/form/create/",
+                dataType: "JSON"
+            }).done(function (msg) {
+                console.log(msg);
+            });
         });
     });
 
-    __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].getLoginStatus(function () {
-        __WEBPACK_IMPORTED_MODULE_1__facebook_sdk__["a" /* default */].api('/me', 'GET', { fields: 'id, gender, link, name, first_name, last_name' }, function (response) {
-            if (!response.error) {
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#fb_id').val(response.id);
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#last_name').val(response.last_name);
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#first_name').val(response.first_name);
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#name').val(response.name);
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#link').val(response.link);
-
-                if (response.gender === 'male') __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name="gender"][value="Male"]').prop('checked', true);else if (response.gender === 'female') __WEBPACK_IMPORTED_MODULE_0_jquery___default()('input[name="gender"][value="Female"]').prop('checked', true);
-
-                __WEBPACK_IMPORTED_MODULE_0_jquery___default.a.ajax({
+    /* _fb.getLoginStatus(function(){
+        _fb.api('/me', 'GET', {fields: 'id, gender, link, name, first_name, last_name'}, function(response){
+            if( !response.error ){
+                $('#fb_id').val(response.id);
+                $('#last_name').val(response.last_name);
+                $('#first_name').val(response.first_name);
+                $('#name').val(response.name);
+                $('#link').val(response.link);
+                
+                if( response.gender === 'male' )
+                    $('input[name="gender"][value="Male"]').prop('checked', true);
+                else if( response.gender === 'female' )
+                    $('input[name="gender"][value="Female"]').prop('checked', true);
+                    $.ajax({
                     method: "POST",
-                    url: "https://" + window.location.hostname + "/form/create/",
+                    url: "https://"+window.location.hostname+"/form/create/",
                     dataType: "JSON"
-                }).done(function (msg) {
-                    console.log(msg);
-                });
-            }
+                  })
+                    .done(function( msg ) {
+                      console.log(msg);
+                    });
+              }
         });
-    }, function () {
+    }, function(){
         alert('fail');
-    });
+    }); */
 });
 
 /***/ }),
@@ -10434,6 +10447,12 @@ function getLoginStatus(successCallback, failCallback) {
                 if (failCallback instanceof Function) failCallback(response);
             }
         });
+    });
+}
+
+function login(callback) {
+    _fbAsyncInitDeferred.done(function () {
+        FB.login(callback);
     });
 }
 
