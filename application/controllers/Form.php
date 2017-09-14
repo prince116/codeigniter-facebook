@@ -48,6 +48,12 @@ class Form extends CI_Controller {
 			'default_graph_version' => 'v2.10',
 		]);
 
+		$response['data'] = $fb->get('/me');
+		echo json_encode($response);
+		exit();
+		  
+		
+
 		// Send the request to Graph
 		try {
 			$response['data'] = $fb->get('/me');
@@ -83,9 +89,7 @@ class Form extends CI_Controller {
 		$response['access_token'] = $accessToken;
 		// $response['access_token'] = $accessToken->getValue(); */
 
-		echo json_encode($response);
-		exit();
-		  
+		
 		  try {
 			// Returns a `Facebook\FacebookResponse` object
 			$response = $fb->get('/me?fields=id,name', $accessToken);
