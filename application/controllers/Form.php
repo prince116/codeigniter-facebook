@@ -36,7 +36,7 @@ class Form extends CI_Controller {
 
 		// var_dump($title);
 		
-		require_once("../vendor/composer/autoload_real.php");
+		require_once("./vendor/composer/autoload_real.php");
 
 		$fb = new Facebook\Facebook([
 			'app_id' => $this->config['facebook']['app_id'],
