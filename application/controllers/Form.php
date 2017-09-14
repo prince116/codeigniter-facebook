@@ -36,17 +36,22 @@ class Form extends CI_Controller {
 
 		// var_dump($title);
 		
-		require_once("./vendor/composer/autoload_real.php");
+		require_once("./vendor/facebook/graph-sdk/src/Facebook/autoload.php");
+
+		$fb_app = $this->config->item('facebook');
 
 		$fb = new Facebook\Facebook([
-			'app_id' => $this->config['facebook']['app_id'],
-			'app_secret' => $this->config['facebook']['app_secret'],
+			'app_id' => $fb_app['app_id'],
+			'app_secret' => $fb_app['app_secret'],
 			'default_graph_version' => 'v2.10',
-			]);
+		]);
+
+		$helper = $fb->getJavaScriptHelper();
+		$accessToken = $helper->getAccessToken();
 		  
 		  try {
 			// Returns a `Facebook\FacebookResponse` object
-			$response = $fb->get('/me?fields=id,name', '{access-token}');
+			$response = $fb->get('/me?fields=id,name', $accessToken);
 		  } catch(Facebook\Exceptions\FacebookResponseException $e) {
 			echo 'Graph returned an error: ' . $e->getMessage();
 			exit;
